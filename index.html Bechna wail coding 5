@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bechna Wail Coding 5 - Langage de Programmation Algérien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a1a3a;
+            --primary-blue: #1a3a7a;
+            --accent-blue: #2d5bb5;
+            --light-blue: #4a7dff;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-light: #f2f2f2;
+            --gray-medium: #e0e0e0;
+            --gray-dark: #888888;
+            --success-green: #2ecc71;
+            --warning-yellow: #f39c12;
+            --error-red: #e74c3c;
+            --code-bg: #152347;
+            --arabic-bg: #1a2f5a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+            padding: 20px;
+            border-bottom: 3px solid var(--accent-blue);
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--light-blue), #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-subtitle {
+            font-size: 14px;
+            color: var(--gray-medium);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .alg-flag {
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: var(--light-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: #ffcc00;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(74, 125, 255, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--light-blue);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background-color: rgba(45, 91, 181, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 30px;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+        
+        .language-selector {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+        
+        .lang-option {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .lang-option.active {
+            background-color: var(--accent-blue);
+        }
+        
+        .lang-option.arabic {
+            background-color: var(--arabic-bg);
+            color: #ffcc00;
+        }
+        
+        .lang-option.arabic.active {
+            background-color: #8b4513;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-line {
+            padding: 5px 0;
+            display: flex;
+        }
+        
+        .line-number {
+            color: var(--gray-dark);
+            margin-right: 15px;
+            user-select: none;
+            min-width: 30px;
+        }
+        
+        .code {
+            flex: 1;
+        }
+        
+        .comment {
+            color: #0cc47c;
+        }
+        
+        .keyword {
+            color: #ff6b8b;
+            font-weight: bold;
+        }
+        
+        .string {
+            color: #f39c12;
+        }
+        
+        .function {
+            color: #3498db;
+        }
+        
+        .number {
+            color: #9b59b6;
+        }
+        
+        .user-form {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light-blue);
+            font-weight: 600;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--light-blue);
+            box-shadow: 0 0 10px rgba(74, 125, 255, 0.5);
+        }
+        
+        .country-selector {
+            position: relative;
+        }
+        
+        .country-flag {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+        
+        #countrySelect {
+            padding-left: 50px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 125, 255, 0.4);
+        }
+        
+        .btn-warning {
+            background-color: #ffcc00;
+            color: #000;
+        }
+        
+        .btn-warning:hover {
+            background-color: #ffdb4d;
+            transform: translateY(-3px);
+        }
+        
+        .btn-success {
+            background-color: var(--success-green);
+            color: var(--white);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .ide-container {
+            background-color: var(--code-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .ide-header {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ide-title {
+            font-weight: bold;
+            color: var(--light-blue);
+        }
+        
+        .ide-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ide-btn {
+            padding: 8px 15px;
+            background-color: var(--accent-blue);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .ide-editor {
+            padding: 20px;
+            min-height: 300px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            background-color: #0d1b3a;
+            color: white;
+            border: none;
+            width: 100%;
+            resize: vertical;
+        }
+        
+        .ide-editor:focus {
+            outline: none;
+        }
+        
+        .ide-output {
+            padding: 20px;
+            background-color: #0a1429;
+            min-height: 150px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
+        .error-message {
+            color: var(--error-red);
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 3px solid var(--error-red);
+        }
+        
+        .success-message {
+            color: var(--success-green);
+            background-color: rgba(46, 204, 113, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 3px solid var(--success-green);
+        }
+        
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .example {
+            background-color: rgba(45, 91, 181, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .example-title {
+            color: #ffcc00;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background-color: var(--primary-dark);
+            border-top: 1px solid var(--accent-blue);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 14px;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--light-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        .creator-info {
+            background-color: rgba(45, 91, 181, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .creator-name {
+            color: #ffcc00;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--light-blue);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-medium);
+        }
+        
+        .correction-container {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--success-green);
+        }
+        
+        .correction-title {
+            color: var(--success-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .country-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .country-option:hover {
+            background-color: rgba(74, 125, 255, 0.2);
+        }
+        
+        .country-option.selected {
+            background-color: var(--accent-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 28px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span class="alg-flag">🇩🇿</span>
+            <h1 class="logo">Bechna Wail Coding 5</h1>
+            <span class="alg-flag">🇩🇿</span>
+        </div>
+        <p class="logo-subtitle">
+            Langage de programmation Algérien - Plus rapide que C++, plus simple que Python, 100% créé en Algérie par Bechna Wail Abdel Aziz
+        </p>
+    </header>
+    
+    <div class="main-container">
+        <!-- Section gauche: Présentation et formulaire -->
+        <div class="left-column">
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-star"></i> Présentation</h2>
+                <p>Bechna Wail Coding 5 est un langage de programmation révolutionnaire créé en Algérie. Il combine la puissance du C++ avec la simplicité de Python, le tout avec une touche algérienne unique.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <div class="feature-title">Ultra Rapide</div>
+                        <div>20% plus rapide que C++</div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="feature-title">Simple à apprendre</div>
+                        <div>Plus simple que Python</div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-flag"></i>
+                        <div class="feature-title">100% Algérien</div>
+                        <div>Créé par Bechna Wail</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-user"></i> Identifiez-vous</h2>
+                <p>Pour utiliser Bechna Wail Coding 5, vous devez vous identifier avec votre nom et votre pays.</p>
+                
+                <div class="user-form">
+                    <div class="form-group">
+                        <label class="form-label">Votre nom complet</label>
+                        <input type="text" class="form-input" id="userName" placeholder="Ex: Bechna wail abdel aziz">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Sélectionnez votre pays</label>
+                        <div class="country-selector">
+                            <span class="country-flag" id="selectedFlag">🇩🇿</span>
+                            <select class="form-input" id="countrySelect">
+                                <option value="DZ">🇩🇿 Algérie</option>
+                                <option value="FR">🇫🇷 France</option>
+                                <option value="PS">🇵🇸 Palestine</option>
+                                <option value="MA">🇲🇦 Maroc</option>
+                                <option value="TN">🇹🇳 Tunisie</option>
+                                <option value="US">🇺🇸 États-Unis</option>
+                                <option value="CA">🇨🇦 Canada</option>
+                                <option value="GB">🇬🇧 Royaume-Uni</option>
+                                <option value="DE">🇩🇪 Allemagne</option>
+                                <option value="JP">🇯🇵 Japon</option>
+                            </select>
+                        </div>
+                        
+                        <div class="country-grid" id="countryGrid">
+                            <!-- Les drapeaux seront ajoutés par JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="saveUserBtn">
+                        <i class="fas fa-save"></i> Enregistrer mon profil
+                    </button>
+                    
+                    <div id="userWelcome" class="success-message" style="display: none; margin-top: 15px;"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-language"></i> Deux versions</h2>
+                <p>Bechna Wail Coding 5 existe en deux versions pour s'adapter à tous les programmeurs.</p>
+                
+                <div class="language-selector">
+                    <div class="lang-option active" id="englishVersion">
+                        <i class="fas fa-globe"></i> Version Anglais
+                    </div>
+                    <div class="lang-option arabic" id="arabicVersion">
+                        <i class="fas fa-globe-asia"></i> Version Arabe
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-line">
+                        <span class="line-number">1</span>
+                        <span class="code">
+                            <span class="comment"># Version Anglais</span>
+                        </span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">2</span>
+                        <span class="code">
+                            <span class="function">print</span>(<span class="string">"Hello world"</span>) <span class="keyword">repeat</span> <span class="number">1</span>
+                        </span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">3</span>
+                        <span class="code">
+                            <span class="comment"># Output: Bechna wail</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="background-color: var(--arabic-bg); display: none;" id="arabicCode">
+                    <div class="code-line">
+                        <span class="line-number">1</span>
+                        <span class="code">
+                            <span class="comment"># Version Arabe</span>
+                        </span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">2</span>
+                        <span class="code">
+                            <span class="function">طباعة</span>(<span class="string">"مرحبا يا العالم"</span>) <span class="keyword">إعادة</span> <span class="number">١</span>
+                        </span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-number">3</span>
+                        <span class="code">
+                            <span class="comment"># الناتج: بشنة وائل</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section droite: Éditeur et exemples -->
+        <div class="right-column">
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-code"></i> Éditeur Bechna Wail Coding 5</h2>
+                <p>Écrivez votre code ici. Le langage détecte et corrige automatiquement vos fautes.</p>
+                
+                <div class="ide-container">
+                    <div class="ide-header">
+                        <div class="ide-title">Éditeur BWC5</div>
+                        <div class="ide-buttons">
+                            <button class="ide-btn" id="runCodeBtn">
+                                <i class="fas fa-play"></i> Exécuter
+                            </button>
+                            <button class="ide-btn" id="clearCodeBtn">
+                                <i class="fas fa-trash"></i> Effacer
+                            </button>
+                        </div>
+                    </div>
+                    <textarea class="ide-editor" id="codeEditor" placeholder="Écrivez votre code Bechna Wail Coding 5 ici...">print("Bonjour l'Algérie") repeat 3</textarea>
+                    <div class="ide-output" id="codeOutput">
+                        <!-- Le résultat s'affichera ici -->
+                    </div>
+                </div>
+                
+                <div id="correctionMessage" class="correction-container" style="display: none;">
+                    <div class="correction-title">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Correction automatique appliquée</span>
+                    </div>
+                    <div id="correctionDetails"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Applications possibles</h2>
+                <p>Bechna Wail Coding 5 peut être utilisé pour créer :</p>
+                
+                <div class="examples">
+                    <div class="example">
+                        <div class="example-title">Sites Web</div>
+                        <div class="code-container" style="padding: 10px; font-size: 14px;">
+                            web("MonSite") {<br>
+                            &nbsp;&nbsp;titre("Bienvenue")<br>
+                            &nbsp;&nbsp;paragraphe("Créé avec BWC5")<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Applications</div>
+                        <div class="code-container" style="padding: 10px; font-size: 14px;">
+                            app("MonApp") {<br>
+                            &nbsp;&nbsp;bouton("Cliquer")<br>
+                            &nbsp;&nbsp;fenêtre("Principale")<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Jeux Vidéo</div>
+                        <div class="code-container" style="padding: 10px; font-size: 14px;">
+                            jeu("MonJeu") {<br>
+                            &nbsp;&nbsp;personnage("Joueur")<br>
+                            &nbsp;&nbsp;niveau(1)<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Systèmes d'exploitation</div>
+                        <div class="code-container" style="padding: 10px; font-size: 14px;">
+                            os("BWC-OS") {<br>
+                            &nbsp;&nbsp;interface("Graphique")<br>
+                            &nbsp;&nbsp;noyau("BWC-Kernel")<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Apprentissage</h2>
+                <p>Apprenez Bechna Wail Coding 5 de A à Z avec notre cours complet.</p>
+                
+                <div class="buttons-container">
+                    <button class="btn btn-warning" id="learnBtn">
+                        <i class="fas fa-play-circle"></i> Apprendre BWC5 de A à Z
+                    </button>
+                    <a href="https://youtube.com/@bechnawailcoding?si=RaHt5iUq2DT4P918" target="_blank" class="btn btn-success">
+                        <i class="fab fa-youtube"></i> Chaîne YouTube
+                    </a>
+                    <button class="btn btn-primary" id="docsBtn">
+                        <i class="fas fa-book"></i> Documentation
+                    </button>
+                </div>
+                
+                <div class="creator-info">
+                    <div class="creator-name">Créateur : Bechna Wail Abdel Aziz</div>
+                    <p>Né le 10 juin 2013 en Algérie. Créateur de plus de 12 jeux, 20 applications et d'une marque d'électrique.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Jeux créés</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Applications</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">195</div>
+                <div class="stat-label">Pays supportés</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Versions linguistiques</div>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="https://youtube.com/@bechnawailcoding?si=RaHt5iUq2DT4P918" target="_blank" class="footer-link">
+                <i class="fab fa-youtube"></i> Bechna wail coding
+            </a>
+            <a href="https://youtube.com/@bechnaphonecompany?si=L5qFQQ_sptyzYR_9" target="_blank" class="footer-link">
+                <i class="fab fa-youtube"></i> Bechna phone company
+            </a>
+            <a href="https://youtube.com/@bechnawailcodingprogram?si=h7eYajxG8B9hn2O4" target="_blank" class="footer-link">
+                <i class="fab fa-youtube"></i> Bechna wail coding program
+            </a>
+            <a href="https://codepen.io/Bechna-wail-Bechna-wail-abdel-aziz/pen/ByzavEw" target="_blank" class="footer-link">
+                <i class="fab fa-codepen"></i> CodePen Bechna wail
+            </a>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 12px;">
+            Langage Bechna Wail Coding 5 - 100% créé en Algérie 🇩🇿 par Bechna Wail Abdel Aziz
+        </div>
+    </div>
+
+    <script>
+        // Éléments DOM
+        const englishVersion = document.getElementById('englishVersion');
+        const arabicVersion = document.getElementById('arabicVersion');
+        const arabicCode = document.getElementById('arabicCode');
+        const englishCode = document.querySelector('.code-container');
+        const userNameInput = document.getElementById('userName');
+        const countrySelect = document.getElementById('countrySelect');
+        const selectedFlag = document.getElementById('selectedFlag');
+        const saveUserBtn = document.getElementById('saveUserBtn');
+        const userWelcome = document.getElementById('userWelcome');
+        const codeEditor = document.getElementById('codeEditor');
+        const codeOutput = document.getElementById('codeOutput');
+        const runCodeBtn = document.getElementById('runCodeBtn');
+        const clearCodeBtn = document.getElementById('clearCodeBtn');
+        const correctionMessage = document.getElementById('correctionMessage');
+        const correctionDetails = document.getElementById('correctionDetails');
+        const learnBtn = document.getElementById('learnBtn');
+        const docsBtn = document.getElementById('docsBtn');
+        const countryGrid = document.getElementById('countryGrid');
+        
+        // Liste des pays avec drapeaux
+        const countries = [
+            {code: "DZ", name: "Algérie", flag: "🇩🇿"},
+            {code: "FR", name: "France", flag: "🇫🇷"},
+            {code: "PS", name: "Palestine", flag: "🇵🇸"},
+            {code: "MA", name: "Maroc", flag: "🇲🇦"},
+            {code: "TN", name: "Tunisie", flag: "🇹🇳"},
+            {code: "US", name: "États-Unis", flag: "🇺🇸"},
+            {code: "CA", name: "Canada", flag: "🇨🇦"},
+            {code: "GB", name: "Royaume-Uni", flag: "🇬🇧"},
+            {code: "DE", name: "Allemagne", flag: "🇩🇪"},
+            {code: "JP", name: "Japon", flag: "🇯🇵"},
+            {code: "CN", name: "Chine", flag: "🇨🇳"},
+            {code: "RU", name: "Russie", flag: "🇷🇺"},
+            {code: "IT", name: "Italie", flag: "🇮🇹"},
+            {code: "ES", name: "Espagne", flag: "🇪🇸"},
+            {code: "BR", name: "Brésil", flag: "🇧🇷"},
+            {code: "EG", name: "Égypte", flag: "🇪🇬"},
+            {code: "SA", name: "Arabie Saoudite", flag: "🇸🇦"},
+            {code: "TR", name: "Turquie", flag: "🇹🇷"},
+            {code: "IN", name: "Inde", flag: "🇮🇳"},
+            {code: "AU", name: "Australie", flag: "🇦🇺"}
+        ];
+        
+        // Variables
+        let currentUser = null;
+        let currentLanguage = 'english';
+        
+        // Initialiser la grille de pays
+        function initCountryGrid() {
+            countryGrid.innerHTML = '';
+            countries.forEach(country => {
+                const countryOption = document.createElement('div');
+                countryOption.className = 'country-option';
+                countryOption.innerHTML = `
+                    <span class="country-flag">${country.flag}</span>
+                    <span>${country.name}</span>
+                `;
+                countryOption.addEventListener('click', () => {
+                    countrySelect.value = country.code;
+                    selectedFlag.textContent = country.flag;
+                    updateSelectedCountry();
+                });
+                countryGrid.appendChild(countryOption);
+            });
+        }
+        
+        // Mettre à jour le pays sélectionné
+        function updateSelectedCountry() {
+            const selectedCode = countrySelect.value;
+            const selectedCountry = countries.find(c => c.code === selectedCode);
+            if (selectedCountry) {
+                selectedFlag.textContent = selectedCountry.flag;
+                
+                // Mettre à jour la sélection dans la grille
+                document.querySelectorAll('.country-option').forEach(option => {
+                    option.classList.remove('selected');
+                    if (option.querySelector('.country-flag').textContent === selectedCountry.flag) {
+                        option.classList.add('selected');
+                    }
+                });
+            }
+        }
+        
+        // Changer entre anglais et arabe
+        englishVersion.addEventListener('click', () => {
+            englishVersion.classList.add('active');
+            arabicVersion.classList.remove('active');
+            arabicCode.style.display = 'none';
+            englishCode.style.display = 'block';
+            currentLanguage = 'english';
+        });
+        
+        arabicVersion.addEventListener('click', () => {
+            arabicVersion.classList.add('active');
+            englishVersion.classList.remove('active');
+            englishCode.style.display = 'none';
+            arabicCode.style.display = 'block';
+            currentLanguage = 'arabic';
+        });
+        
+        // Enregistrer l'utilisateur
+        saveUserBtn.addEventListener('click', () => {
+            const userName = userNameInput.value.trim();
+            const countryCode = countrySelect.value;
+            const country = countries.find(c => c.code === countryCode);
+            
+            if (!userName) {
+                alert('Veuillez entrer votre nom');
+                return;
+            }
+            
+            currentUser = {
+                name: userName,
+                country: country.name,
+                flag: country.flag,
+                code: countryCode
+            };
+            
+            userWelcome.style.display = 'block';
+            userWelcome.innerHTML = `
+                <strong>Bienvenue ${userName} !</strong><br>
+                Vous programmez depuis ${country.flag} ${country.name}.
+                Vous pouvez maintenant utiliser Bechna Wail Coding 5.
+            `;
+            
+            // Exemple de code selon le pays
+            if (countryCode === 'DZ') {
+                codeEditor.value = `print("السلام عليكم يا الجزائر") repeat 3\n# الناتج: السلام عليكم يا الجزائر\n# السلام عليكم يا الجزائر\n# السلام عليكم يا الجزائر`;
+            } else if (countryCode === 'FR') {
+                codeEditor.value = `print("Bonjour la France") repeat 2\n# Output: Bonjour la France\n# Bonjour la France`;
+            } else {
+                codeEditor.value = `print("Hello from ${country.name}") repeat 1\n# Output: Hello from ${country.name}`;
+            }
+        });
+        
+        // Corriger automatiquement le code
+        function autoCorrectCode(code) {
+            let corrections = [];
+            let correctedCode = code;
+            
+            // Détecter et corriger les erreurs courantes
+            if (code.includes('prit(') || code.includes('pritn(')) {
+                correctedCode = correctedCode.replace(/prit(?:n)?\(/g, 'print(');
+                corrections.push('"prit" ou "pritn" corrigé en "print"');
+            }
+            
+            if (code.includes('repeet') || code.includes('repete')) {
+                correctedCode = correctedCode.replace(/repeet|repete/g, 'repeat');
+                corrections.push('"repeet" ou "repete" corrigé en "repeat"');
+            }
+            
+            if (code.includes('repet')) {
+                correctedCode = correctedCode.replace(/repet/g, 'repeat');
+                corrections.push('"repet" corrigé en "repeat"');
+            }
+            
+            // Vérifier les guillemets non fermés
+            const quoteCount = (code.match(/"/g) || []).length;
+            if (quoteCount % 2 !== 0) {
+                correctedCode += '"';
+                corrections.push('Guillemet fermant ajouté');
+            }
+            
+            return {
+                corrected: correctedCode,
+                corrections: corrections
+            };
+        }
+        
+        // Exécuter le code
+        function executeCode(code) {
+            // Corriger le code automatiquement
+            const correction = autoCorrectCode(code);
+            
+            // Afficher les corrections si nécessaire
+            if (correction.corrections.length > 0) {
+                correctionMessage.style.display = 'block';
+                correctionDetails.innerHTML = correction.corrections.map(c => `• ${c}`).join('<br>');
+                
+                // Mettre à jour l'éditeur avec le code corrigé
+                codeEditor.value = correction.corrected;
+            } else {
+                correctionMessage.style.display = 'none';
+            }
+            
+            // Simuler l'exécution du code
+            const lines = correction.corrected.split('\n');
+            let output = '';
+            let repeatCount = 1;
+            
+            lines.forEach(line => {
+                // Détecter les commandes print
+                const printMatch = line.match(/print\("([^"]+)"\)/);
+                if (printMatch) {
+                    const text = printMatch[1];
+                    
+                    // Détecter les répétitions
+                    const repeatMatch = line.match(/repeat\s+(\d+)/);
+                    if (repeatMatch) {
+                        repeatCount = parseInt(repeatMatch[1]);
+                    }
+                    
+                    for (let i = 0; i < repeatCount; i++) {
+                        output += text + '\n';
+                    }
+                }
+                
+                // Détecter les commentaires
+                if (line.includes('#') && !output.includes(line.trim())) {
+                    output += line.trim() + '\n';
+                }
+            });
+            
+            // Ajouter un message personnalisé si l'utilisateur est connecté
+            if (currentUser) {
+                output += `\n---\nCode exécuté par ${currentUser.name} depuis ${currentUser.flag} ${currentUser.country}\n`;
+                output += `Langage: Bechna Wail Coding 5 (${currentLanguage === 'english' ? 'Version Anglais' : 'Version Arabe'})\n`;
+            }
+            
+            return output || 'Aucun résultat à afficher. Essayez: print("Hello") repeat 3';
+        }
+        
+        // Événements des boutons
+        runCodeBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                alert('Veuillez d\'abord enregistrer votre nom et pays');
+                return;
+            }
+            
+            const code = codeEditor.value;
+            const result = executeCode(code);
+            codeOutput.textContent = result;
+            
+            // Animation
+            codeOutput.style.opacity = '0.5';
+            setTimeout(() => {
+                codeOutput.style.opacity = '1';
+            }, 300);
+        });
+        
+        clearCodeBtn.addEventListener('click', () => {
+            codeEditor.value = '';
+            codeOutput.textContent = '';
+            correctionMessage.style.display = 'none';
+        });
+        
+        // Bouton d'apprentissage
+        learnBtn.addEventListener('click', () => {
+            alert('Ouverture du cours complet Bechna Wail Coding 5...\n\nLe cours comprend:\n1. Bases du langage\n2. Syntaxe anglaise et arabe\n3. Création de sites web\n4. Développement d\'applications\n5. Création de jeux vidéo\n6. Systèmes d\'exploitation\n7. Programmation de robots\n\nLe cours est disponible sur la chaîne YouTube Bechna Wail Coding !');
+            
+            // Ouvrir la chaîne YouTube dans un nouvel onglet
+            window.open('https://youtube.com/@bechnawailcoding?si=RaHt5iUq2DT4P918', '_blank');
+        });
+        
+        // Documentation
+        docsBtn.addEventListener('click', () => {
+            const docsWindow = window.open('', '_blank');
+            docsWindow.document.write(`
+                <html>
+                <head>
+                    <title>Documentation Bechna Wail Coding 5</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        h1 { color: #2d5bb5; }
+                        .command { background: #f0f0f0; padding: 10px; margin: 10px 0; border-left: 4px solid #2d5bb5; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Documentation Bechna Wail Coding 5</h1>
+                    <h2>Commandes de base:</h2>
+                    <div class="command">
+                        <strong>print("texte")</strong> - Afficher du texte<br>
+                        Exemple: print("Hello") → Hello
+                    </div>
+                    <div class="command">
+                        <strong>repeat N</strong> - Répéter N fois<br>
+                        Exemple: print("Hi") repeat 3 → Hi Hi Hi
+                    </div>
+                    <div class="command">
+                        <strong>web("nom") { ... }</strong> - Créer un site web
+                    </div>
+                    <div class="command">
+                        <strong>app("nom") { ... }</strong> - Créer une application
+                    </div>
+                    <div class="command">
+                        <strong>jeu("nom") { ... }</strong> - Créer un jeu vidéo
+                    </div>
+                    <div class="command">
+                        <strong>os("nom") { ... }</strong> - Créer un système d'exploitation
+                    </div>
+                    <p>Version: BWC5 1.0.0 | Créé par Bechna Wail Abdel Aziz</p>
+                </body>
+                </html>
+            `);
+        });
+        
+        // Mettre à jour le pays quand la sélection change
+        countrySelect.addEventListener('change', updateSelectedCountry);
+        
+        // Initialiser
+        initCountryGrid();
+        updateSelectedCountry();
+        
+        // Exemple de code par défaut
+        codeEditor.value = `# Bechna Wail Coding 5 - Exemple
+print("Bienvenue en Algérie") repeat 2
+print("Langage créé par Bechna Wail") repeat 1
+
+# Création d'un site web
+web("MonSite") {
+  titre("Mon premier site BWC5")
+  paragraphe("Créé avec Bechna Wail Coding 5")
+}`;
+    </script>
+</body>
+</html>
